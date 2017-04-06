@@ -1,0 +1,9 @@
+!/.gitignore
+Debug/
+OpenGLRemote/textures/
+OpenGLRemote/Debug/
+OpenGLRemote/x64/
+x64/
+OpenGLRemote.sln
+OpenGLRemote.VC.db
+OpenGLRemote.VC.VC.opendb
