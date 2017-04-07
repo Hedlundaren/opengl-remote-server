@@ -71,7 +71,15 @@ void SocketManager::StartServer() {
 				data->rot_drag.x = std::stof(vectorElements[0]);
 				data->rot_drag.y = std::stof(vectorElements[1]);
 				break;
-
+			case 7: // rotation drag
+				std::cout << "tex_painting\n";
+				if (data->texture_painting != 1.0f) {
+					data->texture_painting = 1.0f;
+				}
+				else {
+					data->texture_painting = 0.0f;
+				}
+				break;
 			case 1011: // color r
 				data->painting_color.x = std::stof(recievedValues.second);
 				break;
@@ -87,11 +95,9 @@ void SocketManager::StartServer() {
 				break;
 			case 103: // stiffness
 				data->brush_stiffness = std::stof(recievedValues.second);
-			
 				break;
 			case 104: // size
-				data->brush_size = std::stof(recievedValues.second);
-				
+				data->brush_size = data->biggest_brush_size * std::stof(recievedValues.second);
 				break;
 			}
 

@@ -158,14 +158,14 @@ void ShaderProgram::updateCommonUniforms(MouseRotator rotator, float width, floa
 
 	glm::mat4 MV, P;
 	glm::mat4 M = glm::mat4(1.0f);
-	M = glm::rotate(M, rotator.theta + dataPackage->drag_resistance * dataPackage->rot_drag.y - dataPackage->rotation_resistance * dataPackage->rotation.x, glm::vec3(-1, 0, 0));
+	M = glm::rotate(M, -rotator.theta + dataPackage->drag_resistance * dataPackage->rot_drag.y - dataPackage->rotation_resistance * dataPackage->rotation.x, glm::vec3(-1, 0, 0));
 	M = glm::rotate(M, dataPackage->rotation_resistance * dataPackage->rotation.y, glm::vec3(0, 0, -1));
-	M = glm::rotate(M, rotator.phi  -dataPackage->drag_resistance * dataPackage->rot_drag.x - dataPackage->rotation_resistance * dataPackage->rotation.z, glm::vec3(0, -1, 0));
+	M = glm::rotate(M, -rotator.phi  -dataPackage->drag_resistance * dataPackage->rot_drag.x - dataPackage->rotation_resistance * dataPackage->rotation.z, glm::vec3(0, -1, 0));
 	M = glm::scale(M, glm::vec3(1) + dataPackage->scale_factor * dataPackage->scale);
 	glm::vec4 camPos = glm::vec4(0.0f, 2.0f, 5.0f + 0.05f*rotator.zoom, 1.0f);
 
 	glm::vec3 scene_center(-dataPackage->drag_resistance * dataPackage->drag.x + dataPackage->position.z, -dataPackage->drag_resistance * dataPackage->drag.y  + -dataPackage->position.x, dataPackage->position.y);
-	glm::mat4 V = glm::lookAt(glm::vec3(camPos), scene_center, glm::vec3(0.0f, 1.0f, 0.0f));
+	glm::mat4 V = glm::lookAt(glm::vec3(camPos), scene_center, glm::vec3(0.0f, -1.0f, 0.0f));
 	glm::vec3 lDir = glm::vec3(1.0f, 0.0f, 0.0f);
 	P = glm::perspectiveFov(50.0f, static_cast<float>(width), static_cast<float>(height), 0.1f, 100.0f);
 	MV = V * M;

@@ -145,11 +145,8 @@
     <None Include="models\susanuv.m">
       <Filter>models</Filter>
     </None>
-    <None Include="shaders\show.frag">
-      <Filter>Resource Files</Filter>
-    </None>
-    <None Include="shaders\show.vert">
-      <Filter>Resource Files</Filter>
+    <None Include="models\bima.m">
+      <Filter>models</Filter>
     </None>
   </ItemGroup>
 </Project>

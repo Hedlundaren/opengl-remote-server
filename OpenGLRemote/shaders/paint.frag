@@ -2,6 +2,7 @@
  
 
 in vec3 newPos;
+in vec2 newUV;
 
 out vec4 outputF;
 
@@ -41,7 +42,7 @@ void main()
 	vec2 p2 = vec2(mouseCoordOld.x / width, -mouseCoordOld.y / height + 1.0 );
 
 	vec2 screen_coord = vec2(gl_FragCoord.x / width, gl_FragCoord.y / height );
-	vec3 color = vec3(texture(saveBuffer, screen_coord));
+	vec3 color = vec3(texture(saveBuffer, newUV));
 	vec2 uv_p1 = vec2(texture(uvCoordBuffer, p1));
 	vec2 uv_p2 = vec2(texture(uvCoordBuffer, p2));
 	
@@ -50,42 +51,45 @@ void main()
 	float od1 = 0.0f;
 	float od2 = 0.0f;
 
+	vec2 d; // vector between current pixel and marked pixel
+	float dist; // distance between current pixel and marked pixel
 	if(texture_painting > 0.5){ // paint on texture
 		
 		vec2 line_dir = p2 - p1;
 		uv_p1 = p1; 
-		// Get distance to line
-		vec2 ortho_vec = normalize(ortho_vec(line_dir));
+		vec2 ortho_vec = normalize(ortho_vec(line_dir)); 
 		point_distance = length(line_dir);
-
-		line_dist = distance_to_line(p1, p2, screen_coord);
-		od1 = distance_to_line(p1, (p1 + ortho_vec), screen_coord);
-		od2 = distance_to_line(p2, (p2 + ortho_vec), screen_coord);
+		line_dist = distance_to_line(p1, p2, newUV); // Get distance to line
+		od1 = distance_to_line(p1, (p1 + ortho_vec), newUV);
+		od2 = distance_to_line(p2, (p2 + ortho_vec), newUV);
+		d = uv_p1 - newUV; // Distance to p1
+		dist = length(d);
 	}else{ // paint on mesh
-
 		vec2 line_dir = uv_p2 - uv_p1;
 		vec2 ortho_vec = normalize(ortho_vec(line_dir));
 		point_distance = length(line_dir);
-
 		line_dist = distance_to_line(uv_p1, uv_p2, screen_coord);
 		od1 = distance_to_line(uv_p1, (uv_p1 + ortho_vec), screen_coord);
 		od2 = distance_to_line(uv_p2, (uv_p2 + ortho_vec), screen_coord);
+		d = uv_p1 - screen_coord; // Distance to p1
+		dist = length(d);
 	}
 
-	// Distance to p1
-	vec2 d = uv_p1 - screen_coord;
-	float dist = length(d);
+	
 	intensity = pow(intensity, 5.0);
+
 	vec4 paint;
-	if(point_distance < 0.2 && line_dist < line_thickness && od1 < point_distance && od2 < point_distance){
+	if(point_distance < 0.2 /*for uv cuts*/ && line_dist < line_thickness && od1 < point_distance && od2 < point_distance){
 		intensity = cos(line_dist * pi/line_thickness)*0.5 + 0.5 * (1 - brush_stiffness) + brush_stiffness * (1);
 		paint = opacity * intensity * vec4(painting_color, intensity);
+		//paint = vec4(0,0,1,1.0);
 	}
 
 	if( dist < line_thickness){
 		intensity = cos(dist * pi/line_thickness)*0.5 + 0.5 * (1 - brush_stiffness) + brush_stiffness * (1);
-		paint += opacity * intensity * vec4(painting_color, intensity);
+		paint += opacity  * intensity * vec4(painting_color, intensity);
+		//paint = vec4(0,1,0,1.0);
 	}
 
-	outputF = vec4(color, 1) + paint;
+	outputF = vec4(color, 1.0) + paint;
  }

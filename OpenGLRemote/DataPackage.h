@@ -29,9 +29,9 @@ public:
 	float texture_painting = 0.0f; // bool for shader 0-1
 	glm::vec3 painting_color = glm::vec3(0.5, 0.2, 0.0);
 	float brush_size = 2.5f;
+	float biggest_brush_size = 10.0f;
 	float brush_stiffness = 0.0f;
 	float opacity = 0.3f;
-
 
 	void update(float dt);
 

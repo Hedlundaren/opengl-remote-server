@@ -89,7 +89,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>BOOST_COROUTINES_NO_DEPRECATION_WARNING;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BOOST_COROUTINES_NO_DEPRECATION_WARNING;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libeay32.lib;glew32.lib;glew32s.lib;glfw3.lib;glfw3dll.lib;OpenGL32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -100,7 +100,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>BOOST_COROUTINES_NO_DEPRECATION_WARNING;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BOOST_COROUTINES_NO_DEPRECATION_WARNING;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalDependencies>libeay32.lib;glew32.lib;glew32s.lib;glfw3.lib;glfw3dll.lib;OpenGL32.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -113,7 +113,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>BOOST_COROUTINES_NO_DEPRECATION_WARNING;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BOOST_COROUTINES_NO_DEPRECATION_WARNING;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -128,7 +128,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>BOOST_COROUTINES_NO_DEPRECATION_WARNING;_WIN32_WINNT=0x0501;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>BOOST_COROUTINES_NO_DEPRECATION_WARNING;_WIN32_WINNT=0x0501;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -167,6 +167,7 @@
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="models\bima.m" />
     <None Include="models\bunny.m" />
     <None Include="models\bunnyuv.m" />
     <None Include="models\eightuv.m" />
@@ -178,8 +179,6 @@
     <None Include="shaders\paint.vert" />
     <None Include="shaders\save.frag" />
     <None Include="shaders\save.vert" />
-    <None Include="shaders\show.frag" />
-    <None Include="shaders\show.vert" />
     <None Include="shaders\standard.frag" />
     <None Include="shaders\standard.vert" />
     <None Include="shaders\uv.frag" />

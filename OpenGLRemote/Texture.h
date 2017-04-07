@@ -17,6 +17,7 @@ public:
 	~Texture();
 	void bindTexture();
 
+
 protected:
 	void generateTexture(const char * path);
 	void saveTexture(const char * path);

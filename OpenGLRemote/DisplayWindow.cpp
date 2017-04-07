@@ -16,7 +16,7 @@ DisplayWindow::DisplayWindow(GLFWwindow* &window, const unsigned width, const un
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	window = glfwCreateWindow(width, height, title, NULL, NULL);
-	//window = glfwCreateWindow(3200, 1800, "And there was light.", glfwGetPrimaryMonitor(), NULL);
+	//window = glfwCreateWindow(width, height, "And there was light.", glfwGetPrimaryMonitor(), NULL);
 	if (window == NULL) {
 		fprintf(stderr, "Failed to open GLFW window. ");
 		glfwTerminate();
@@ -37,8 +37,6 @@ DisplayWindow::DisplayWindow(GLFWwindow* &window, const unsigned width, const un
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LESS);
-
-
 }
 
 
