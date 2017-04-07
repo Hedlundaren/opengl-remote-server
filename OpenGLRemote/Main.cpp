@@ -174,9 +174,8 @@ int main()
 			glProgramUniform1f(paint_program, texLoc, dataPackage->brush_stiffness);
 			texLoc = glGetUniformLocation(paint_program, "opacity");
 			glProgramUniform1f(paint_program, texLoc, dataPackage->opacity);
-			glm::vec3 painting_color = glm::vec3(0.5, 0.2, 0.0);
 			texLoc = glGetUniformLocation(paint_program, "painting_color");
-			glUniform3fv(texLoc, 1, &painting_color[0]);
+			glUniform3fv(texLoc, 1, &dataPackage->painting_color[0]);
 
 			quad.draw();
 

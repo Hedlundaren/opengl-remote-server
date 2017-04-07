@@ -60,18 +60,42 @@ void SocketManager::StartServer() {
 				exit(0); // Exits OpenGL program
 				break;
 
-			case 5:
+			case 5: // translate drag
 				vectorElements = split(recievedValues.second, ',');
 				data->drag.x = std::stof(vectorElements[0]);
 				data->drag.y = std::stof(vectorElements[1]);
 				break;
 
-			case 6:
+			case 6: // rotation drag
 				vectorElements = split(recievedValues.second, ',');
 				data->rot_drag.x = std::stof(vectorElements[0]);
 				data->rot_drag.y = std::stof(vectorElements[1]);
 				break;
+
+			case 1011: // color r
+				data->painting_color.x = std::stof(recievedValues.second);
+				break;
+			case 1012: // color g
+				data->painting_color.y = std::stof(recievedValues.second);
+				break;
+			case 1013: // color b
+				data->painting_color.z = std::stof(recievedValues.second);
+				break;
+			case 102: // opacity
+				data->opacity = std::stof(recievedValues.second);
+				
+				break;
+			case 103: // stiffness
+				data->brush_stiffness = std::stof(recievedValues.second);
+			
+				break;
+			case 104: // size
+				data->brush_size = std::stof(recievedValues.second);
+				
+				break;
 			}
+
+
 
 			auto send_stream = make_shared<WsServer::SendStream>();
 			*send_stream << msg;
