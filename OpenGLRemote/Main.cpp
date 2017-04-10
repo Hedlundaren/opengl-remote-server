@@ -124,7 +124,7 @@ int main()
 	paint_program();
 	glUseProgram(0);
 
-	Sphere sphere = Sphere(20, 20, 1);
+	Sphere sphere = Sphere(30, 30, 1);
 	Quad quad;
 	CustomMesh model = CustomMesh();
 	model.load("models/bunnyuv.m");
@@ -135,7 +135,7 @@ int main()
 	Framebuffer textureBuffer(WIDTH, HEIGHT); // Render texture of object to this
 	Framebuffer saveBuffer(WIDTH, HEIGHT); // Render texture of object to this
 
-	Texture canvas_texture("textures/oldbunny.jpg");
+	Texture canvas_texture("textures/canvas.jpg");
 
 
 	GLint texLoc;
@@ -188,7 +188,7 @@ int main()
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			uv_program();
 			uv_program.updateCommonUniforms(rotator, WIDTH, HEIGHT, currentTime, dataPackage);
-			model.draw();
+			sphere.draw();
 
 			// STEP 2 - Paint texture
 			textureBuffer.bindBuffer();
@@ -254,7 +254,7 @@ int main()
 			glActiveTexture(GL_TEXTURE0);
 			textureBuffer.bindTexture();
 			custom_program.updateCommonUniforms(rotator, WIDTH, HEIGHT, currentTime, dataPackage);
-			model.draw();
+			sphere.draw();
 		}
 		
 		// STEP 6 - Save old mouse coords

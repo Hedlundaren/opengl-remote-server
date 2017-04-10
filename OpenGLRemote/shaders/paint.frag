@@ -79,10 +79,10 @@ void main()
 	intensity = pow(intensity, 5.0);
 
 	vec4 paint;
-	if(point_distance < 0.2 /*for uv cuts*/ && line_dist < line_thickness && od1 < point_distance && od2 < point_distance){
+	if(point_distance < 0.05 /*for uv cuts*/ && line_dist < line_thickness && od1 < point_distance && od2 < point_distance){
 		intensity = cos(line_dist * pi/line_thickness)*0.5 + 0.5 * (1 - brush_stiffness) + brush_stiffness * (1);
 		paint = opacity * intensity * vec4(painting_color, intensity);
-		//paint = vec4(0,0,1,1.0);
+		//paint = vec4(0,1,0.1,1.0);
 	}
 
 	if( dist < line_thickness){
