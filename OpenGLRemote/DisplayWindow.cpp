@@ -15,8 +15,8 @@ DisplayWindow::DisplayWindow(GLFWwindow* &window, const unsigned width, const un
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	window = glfwCreateWindow(width, height, title, NULL, NULL);
-	//window = glfwCreateWindow(width, height, "And there was light.", glfwGetPrimaryMonitor(), NULL);
+	//window = glfwCreateWindow(width, height, title, NULL, NULL);
+	window = glfwCreateWindow(width, height, "TexMesh", glfwGetPrimaryMonitor(), NULL);
 	if (window == NULL) {
 		fprintf(stderr, "Failed to open GLFW window. ");
 		glfwTerminate();

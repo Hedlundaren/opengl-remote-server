@@ -76,20 +76,22 @@ void main()
 	}
 
 	
-	intensity = pow(intensity, 5.0);
 
-	vec4 paint;
-	if(point_distance < 0.05 /*for uv cuts*/ && line_dist < line_thickness && od1 < point_distance && od2 < point_distance){
-		intensity = cos(line_dist * pi/line_thickness)*0.5 + 0.5 * (1 - brush_stiffness) + brush_stiffness * (1);
-		paint = opacity * intensity * vec4(painting_color, intensity);
-		//paint = vec4(0,1,0.1,1.0);
-	}
+	vec4 paint = vec4(0);
+	float a = opacity;
+	float stiffness = brush_stiffness;
+	paint = vec4(painting_color, a);
 
 	if( dist < line_thickness){
-		intensity = cos(dist * pi/line_thickness)*0.5 + 0.5 * (1 - brush_stiffness) + brush_stiffness * (1);
-		paint += opacity  * intensity * vec4(painting_color, intensity);
-		//paint = vec4(0,1,0,1.0);
+		// POINTS
+		intensity = max( (cos(dist * pi/line_thickness)*0.5 + 0.5) * (1-stiffness)*a + a * (stiffness), intensity);
 	}
 
-	outputF = vec4(color, 1.0) + paint;
+	if(point_distance < 0.05 /*for uv cuts*/ && line_dist < line_thickness && od1 < point_distance && od2 < point_distance){
+		// LINES
+		intensity = max( (cos(line_dist * pi/line_thickness)*0.5 + 0.5) * (1-stiffness)*a + a * (stiffness), intensity);
+	}
+	intensity = pow(intensity, 5.0);
+
+	outputF = vec4(color, 1.0) * (1 - intensity)  + intensity*paint;
  }

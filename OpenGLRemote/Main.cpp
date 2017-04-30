@@ -188,7 +188,7 @@ int main()
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			uv_program();
 			uv_program.updateCommonUniforms(rotator, WIDTH, HEIGHT, currentTime, dataPackage);
-			sphere.draw();
+			model.draw();
 
 			// STEP 2 - Paint texture
 			textureBuffer.bindBuffer();
@@ -254,7 +254,7 @@ int main()
 			glActiveTexture(GL_TEXTURE0);
 			textureBuffer.bindTexture();
 			custom_program.updateCommonUniforms(rotator, WIDTH, HEIGHT, currentTime, dataPackage);
-			sphere.draw();
+			model.draw();
 		}
 		
 		// STEP 6 - Save old mouse coords

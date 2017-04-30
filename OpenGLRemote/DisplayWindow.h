@@ -16,12 +16,12 @@ public:
 
 	void initFrame(glm::vec3 clear_color);
 
-
 };
 
 inline void DisplayWindow::initFrame(glm::vec3 clear_color) {
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glEnable(GL_ALPHA_TEST);
+	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 
